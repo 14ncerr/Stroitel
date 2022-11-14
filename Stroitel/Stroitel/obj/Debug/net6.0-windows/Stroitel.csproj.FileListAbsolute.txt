@@ -55,3 +55,5 @@ D:\CL\1113\repos\Stroitel\Stroitel\obj\Debug\net6.0-windows\ref\Stroitel.dll
 D:\CL\1113\repos\Stroitel\Stroitel\obj\Debug\net6.0-windows\Views\MainWindow.g.cs
 D:\CL\1113\repos\Stroitel\Stroitel\obj\Debug\net6.0-windows\Views\MainWindow.baml
 D:\CL\1113\repos\Stroitel\Stroitel\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
+D:\CL\1113\repos\Stroitel\Stroitel\obj\Debug\net6.0-windows\Views\CartWindow.g.cs
+D:\CL\1113\repos\Stroitel\Stroitel\obj\Debug\net6.0-windows\Views\CartWindow.baml

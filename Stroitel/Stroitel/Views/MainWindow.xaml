@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="Строитель" 
         Height="600"
-        MaxHeight="600"
+        MinHeight="600"
         Width="900"
         MinWidth="900"
         Background="{StaticResource ColorPrimary}"
@@ -44,7 +44,9 @@
 
             <StackPanel
                 Grid.Column="1"
-                Orientation="Horizontal" HorizontalAlignment="Right" Width="90">
+                Orientation="Horizontal" 
+                HorizontalAlignment="Right" 
+                Width="90">
 
                 <TextBlock
                     Text="{Binding DisplayingProducts.Count}"
@@ -103,11 +105,20 @@
         </Grid>
 
         <ListView
+            x:Name="ProductsListLayoutLv"
             Grid.Row="2"
             Margin="8"
             HorizontalContentAlignment="Stretch"
             ItemsSource="{Binding DisplayingProducts}">
 
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem 
+                        Header="Добавить к заказу"
+                        Click="AddItemToCart"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
+            
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border
@@ -135,19 +146,33 @@
                                 <TextBlock
                                     Text="{Binding ProductName}"
                                     FontWeight="Bold"/>
-                                
+
                                 <TextBlock
                                     Text="{Binding ProductDescription}"
                                     TextWrapping="WrapWithOverflow"
                                     Width="510"
                                     HorizontalAlignment="Left"/>
-                                
+
                                 <TextBlock
                                     Text="{Binding ProductManufacturerNavigation.ManufacturerName}"/>
 
-                                <TextBlock
-                                    Text="{Binding ProductCost, StringFormat={}.00}"/>
-                                
+                                <StackPanel
+                                    Orientation="Horizontal">
+
+                                    <TextBlock
+                                        x:Name="ProductCostTb"
+                                        Text="{Binding ProductCost, StringFormat={}.00}"/>
+
+                                    <TextBlock
+                                        Text="   "/>
+
+                                    <TextBlock
+                                        x:Name="ProductDiscCostTb"
+                                        Text="{Binding TotalCost, StringFormat={}.00}"
+                                        Visibility="Hidden"/>
+
+                                </StackPanel>
+
                             </StackPanel>
 
                             <TextBlock
@@ -157,13 +182,60 @@
                                 StringFormat={}{0}%}"/>
 
                         </Grid>
-                        
                     </Border>
+
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding IsDiscount}" Value="true">
+                            <Setter 
+                                TargetName="ProductCostTb" 
+                                Property="TextDecorations" 
+                                Value="Strikethrough"/>
+                            <Setter
+                                TargetName="ProductCostTb" 
+                                Property="Foreground"
+                                Value="Red"/>
+                            <Setter
+                                TargetName="ProductDiscCostTb"
+                                Property="Visibility"
+                                Value="Visible"/>
+                            <Setter
+                                TargetName="ProductDiscCostTb"
+                                Property="FontSize"
+                                Value="15"/>
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
                 </DataTemplate>
             </ListView.ItemTemplate>
-            
         </ListView>
-        
+
+        <Grid
+            Grid.Row="3">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button
+                Grid.Column="2"
+                Height="38"
+                Margin="8"
+                Background="{StaticResource ColorSecondary}"
+                Content="Выход"
+                Click="QuitBtnClick"/>
+
+            <Button
+                x:Name="CartBtn"
+                Grid.Column="0"
+                Height="38"
+                Margin="8"
+                Background="{StaticResource ColorSecondary}"
+                Content="Корзина"
+                Visibility="Hidden"
+                Click="CartBtnClick"/>
+
+        </Grid>
         
     </Grid>
     

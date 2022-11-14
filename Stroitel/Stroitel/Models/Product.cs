@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Stroitel.Models
 {
@@ -35,5 +36,21 @@ namespace Stroitel.Models
         public virtual Manufacturer ProductManufacturerNavigation { get; set; } = null!;
         public virtual Provider ProductProviderNavigation { get; set; } = null!;
         public virtual ICollection<OrderProduct> OrderProducts { get; set; }
+
+        [NotMapped]
+        public decimal? TotalCost
+        {
+            get => (ProductDiscountAmount > 0)
+            ? ProductCost * (1 - (decimal)ProductDiscountAmount / 100)
+            : ProductCost;
+        }
+
+        [NotMapped]
+        public bool IsDiscount
+        {
+            get => (ProductCost != TotalCost)
+                ? true
+                : false;
+        }
     }
 }

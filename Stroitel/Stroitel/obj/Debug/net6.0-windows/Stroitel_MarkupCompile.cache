@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 D:\CL\1113\repos\Stroitel\Stroitel\App.xaml
-2826402681
+31704661536
 
-16-137311210
+18-1844735216
 2141620934594
-Views\AuthStartupWindow.xaml;Views\MainWindow.xaml;
+Views\AuthStartupWindow.xaml;Views\CartWindow.xaml;Views\MainWindow.xaml;
 
 False
 

@@ -56,9 +56,9 @@
                 x:Name="ErrorTb"
                 Text="Ошибка, неверный логин или пароль"
                 HorizontalAlignment="Center"
-                Foreground="Red"
+                Foreground="MediumVioletRed"
                 Visibility="Hidden"
-                Margin="8 0 0 0"/>
+                Margin="8 0 0 8"/>
 
             <StackPanel
                 Orientation="Horizontal"

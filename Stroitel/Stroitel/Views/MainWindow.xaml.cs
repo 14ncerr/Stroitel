@@ -24,11 +24,15 @@ namespace Stroitel.Views
     public partial class MainWindow : Window
     {
         private MainWindowViewModel _viewModel;
-        
+        private AuthStartupWindow _startupWindow;
+        private CartWindow _cartWindow;
+        private List<Product> _productsToCart;
+
 
         public MainWindow()
         {
-            InitializeComponent();           
+            InitializeComponent();
+            _productsToCart = new();
         }
 
         public MainWindow(int userId)
@@ -36,8 +40,39 @@ namespace Stroitel.Views
             InitializeComponent();
             _viewModel = new(userId);
             DataContext = _viewModel;
+            _productsToCart = new();
         }
 
+        private void CartBtnClick(object sender, RoutedEventArgs e)
+        {
+            _cartWindow = new(_productsToCart);
+            _cartWindow.ShowDialog();
+            CartBtn.Visibility = Visibility.Hidden;
+        }
 
+        private void AddItemToCart(object sender, RoutedEventArgs e)
+        {
+            bool alreadyAdded = false;
+            foreach (var item in _productsToCart)
+            {
+                if (EqualityComparer<Product>.Default.Equals(item, (Product)ProductsListLayoutLv.SelectedItem))
+                {
+                    MessageBox.Show("Товар уже добавлен");
+                    alreadyAdded = true;
+                }
+            }
+
+            if (alreadyAdded == false)           
+                _productsToCart.Add((Product)ProductsListLayoutLv.SelectedItem);
+            
+            CartBtn.Visibility = Visibility.Visible;
+        }
+
+        private void QuitBtnClick(object sender, RoutedEventArgs e)
+        {
+            _startupWindow = new();
+            _startupWindow.Show();
+            Close();
+        }
     }
 }

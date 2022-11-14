@@ -134,7 +134,7 @@ namespace Stroitel.ViewModels
             if ((SearchingString == String.Empty) || (SearchingString == null))
                 return list;
             else
-                return list.Where(p => p.ProductName.Contains(SearchingString)).ToList();           
+                return list.Where(p => p.ProductName.ToLower().Contains(SearchingString.ToLower())).ToList();           
         }
 
         private List<Product> Filt(List<Product> list)
