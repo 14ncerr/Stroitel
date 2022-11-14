@@ -46,11 +46,12 @@ namespace Stroitel.Models
         }
 
         [NotMapped]
-        public bool IsDiscount
+        public bool HasDiscount
         {
-            get => (ProductCost != TotalCost)
-                ? true
-                : false;
+            get => (ProductCost != TotalCost);
         }
+
+        [NotMapped]
+        public bool DiscountOver15 => HasDiscount && (ProductDiscountAmount > 15);
     }
 }

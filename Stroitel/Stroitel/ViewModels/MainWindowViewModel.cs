@@ -77,7 +77,7 @@ namespace Stroitel.ViewModels
         public User CurrentUser { get; set; }
 
         #endregion
-
+        
         #region Constructors
 
         public MainWindowViewModel()
@@ -94,20 +94,15 @@ namespace Stroitel.ViewModels
         }
 
         public MainWindowViewModel(int userId)
-        {
-            SortValue = SortItems[0];
-            FiltValue = FiltItems[0];
+            :this()
+        {          
             using (AppDbContext context = new())
             {
                 CurrentUser = context.Users
                     .Include(u => u.UserRoleNavigation)
-                    .Single(u => u.UserId == userId);
-
-                Products = context.Products
-                   .Include(p => p.ProductManufacturerNavigation)
-                   .ToList();
+                    .Single(u => u.UserId == userId);          
             }
-            _displayingProducts = Products;
+            
         }
 
         #endregion

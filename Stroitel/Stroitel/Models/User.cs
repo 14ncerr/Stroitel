@@ -15,6 +15,6 @@ namespace Stroitel.Models
 
         public virtual Role UserRoleNavigation { get; set; } = null!;
 
-        public string FullName => $"{UserSurname} {UserName} {UserPatronymic}";
+        public string FullName => $"{UserRoleNavigation.RoleName}, {UserSurname} {UserName} {UserPatronymic}";
     }
 }

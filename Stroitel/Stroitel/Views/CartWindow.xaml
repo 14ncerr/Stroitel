@@ -8,14 +8,13 @@
         mc:Ignorable="d"
         Title="Строитель / Корзина" 
         Height="400"
-        MaxHeight="400"
         Width="600"
-        MinWidth="600"
         Background="{StaticResource ColorPrimary}"
         FontFamily="Comic Sans MS"
         FontSize="14"
         WindowStartupLocation="CenterScreen"
-        Icon="/Resources/icon.ico">
+        Icon="/Resources/icon.ico"
+        ResizeMode="NoResize">
 
     <Window.DataContext>
         <vm:CartWindowViewModel/>

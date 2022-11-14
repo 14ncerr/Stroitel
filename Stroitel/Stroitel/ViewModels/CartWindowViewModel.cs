@@ -23,8 +23,9 @@ namespace Stroitel.ViewModels
         {
 
         }
-
+        
         public CartWindowViewModel(List<Product> products)
+            : this()
         {
             ProductsInCart = products;
             ItemsInCart = new();
@@ -51,7 +52,6 @@ namespace Stroitel.ViewModels
 
             TotalCost = GetTotalCost();
         }
-
         private decimal GetTotalCost()
         {
             decimal totalCost = 0M;
@@ -61,15 +61,5 @@ namespace Stroitel.ViewModels
             }
             return totalCost;
         }
-
-        public void AddOneUnit(ItemInCart item)
-        {
-            
-        }
-
-
-
     }
-
-   
 }

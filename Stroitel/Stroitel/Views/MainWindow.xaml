@@ -118,11 +118,13 @@
                         Click="AddItemToCart"/>
                 </ContextMenu>
             </ListView.ContextMenu>
-            
+
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border
+                        x:Name="ItemBrd"
                         BorderBrush="{StaticResource ColorAccent}"
+                        Background="{StaticResource ColorSecondary}"
                         BorderThickness="2"
                         Height="120"
                         Margin="0 10 0 0">
@@ -185,7 +187,8 @@
                     </Border>
 
                     <DataTemplate.Triggers>
-                        <DataTrigger Binding="{Binding IsDiscount}" Value="true">
+
+                        <DataTrigger Binding="{Binding HasDiscount}" Value="true">
                             <Setter 
                                 TargetName="ProductCostTb" 
                                 Property="TextDecorations" 
@@ -203,6 +206,11 @@
                                 Property="FontSize"
                                 Value="15"/>
                         </DataTrigger>
+
+                        <DataTrigger Binding="{Binding DiscountOver15}" Value="True">
+                            <Setter TargetName="ItemBrd" Property="Background" Value="#7fff00"/>
+                        </DataTrigger>
+
                     </DataTemplate.Triggers>
                 </DataTemplate>
             </ListView.ItemTemplate>

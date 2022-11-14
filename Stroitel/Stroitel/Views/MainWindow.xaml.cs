@@ -27,8 +27,8 @@ namespace Stroitel.Views
         private AuthStartupWindow _startupWindow;
         private CartWindow _cartWindow;
         private List<Product> _productsToCart;
-
-
+        
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -49,7 +49,7 @@ namespace Stroitel.Views
             _cartWindow.ShowDialog();
             CartBtn.Visibility = Visibility.Hidden;
         }
-
+        
         private void AddItemToCart(object sender, RoutedEventArgs e)
         {
             bool alreadyAdded = false;
@@ -67,7 +67,7 @@ namespace Stroitel.Views
             
             CartBtn.Visibility = Visibility.Visible;
         }
-
+        
         private void QuitBtnClick(object sender, RoutedEventArgs e)
         {
             _startupWindow = new();
